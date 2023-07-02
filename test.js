@@ -75,12 +75,20 @@ const inputs = testCases.map((testCase) => testCase.input);
 
 runCode(inputs, (output) => {
     const outputs = output.split('\n');
+    let allTestCasesPassed = true; // Track if all test cases pass
+
     testCases.forEach((testCase, index) => {
         const actualOutput = outputs[index];
         if (actualOutput === testCase.expectedOutput) {
             console.log(`Test case passed: Input "${testCase.input}", Output "${actualOutput}"`);
         } else {
+            allTestCasesPassed = false; // Set flag to false for failed test case
             console.error(`Test case failed: Input "${testCase.input}", Expected "${testCase.expectedOutput}", Actual "${actualOutput}"`);
         }
     });
+
+    // Fail the test script if any test case failed
+    if (!allTestCasesPassed) {
+        process.exit(1); // Exit with a non-zero code to indicate test failure
+    }
 });
