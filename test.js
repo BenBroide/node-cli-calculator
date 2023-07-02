@@ -1,27 +1,28 @@
 const { spawn } = require('child_process');
-const fs = require('fs');
 
-function runCode(inputs, callback) {
-    const child = spawn('node', ['node-cli-calculator.js', '--testing']);
+function runCode(inputs) {
+    return new Promise((resolve, reject) => {
+        const child = spawn('node', ['node-cli-calculator.js', '--testing']);
 
-    let output = '';
-    child.stdout.on('data', (data) => {
-        output += data.toString();
+        let output = '';
+        child.stdout.on('data', (data) => {
+            output += data.toString();
+        });
+
+        child.stderr.on('data', (data) => {
+            console.error(data.toString());
+        });
+
+        child.on('close', () => {
+            resolve(output.trim().split('\n'));
+        });
+
+        inputs.forEach((input) => {
+            child.stdin.write(input + '\n');
+        });
+
+        child.stdin.end();
     });
-
-    child.stderr.on('data', (data) => {
-        console.error(data.toString());
-    });
-
-    child.on('close', () => {
-        callback(output.trim());
-    });
-
-    inputs.forEach((input) => {
-        child.stdin.write(input + '\n');
-    });
-
-    child.stdin.end();
 }
 
 const testCases = [
@@ -66,29 +67,21 @@ const testCases = [
     { input: '*5=', expectedOutput: '88.88888888888889' },
     { input: '-2=', expectedOutput: '86.88888888888889' },
     { input: '+5=', expectedOutput: '91.88888888888889' },
- 
 ];
 
+describe('Calculator Tests', () => {
+    let results;
 
-
-const inputs = testCases.map((testCase) => testCase.input);
-
-runCode(inputs, (output) => {
-    const outputs = output.split('\n');
-    let allTestCasesPassed = true; // Track if all test cases pass
-
-    testCases.forEach((testCase, index) => {
-        const actualOutput = outputs[index];
-        if (actualOutput === testCase.expectedOutput) {
-            console.log(`Test case passed: Input "${testCase.input}", Output "${actualOutput}"`);
-        } else {
-            allTestCasesPassed = false; // Set flag to false for failed test case
-            console.error(`Test case failed: Input "${testCase.input}", Expected "${testCase.expectedOutput}", Actual "${actualOutput}"`);
-        }
+    // Before all tests run the inputs and get the results
+    beforeAll(async () => {
+        const inputs = testCases.map(testCase => testCase.input);
+        results = await runCode(inputs);
     });
 
-    // Fail the test script if any test case failed
-    if (!allTestCasesPassed) {
-        process.exit(1); // Exit with a non-zero code to indicate test failure
-    }
+    testCases.forEach((testCase, index) => {
+        test(`Input "${testCase.input}" should return ${testCase.expectedOutput}`, () => {
+            const actualOutput = results[index];
+            expect(actualOutput).toEqual(testCase.expectedOutput);
+        });
+    });
 });
