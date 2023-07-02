@@ -9,7 +9,7 @@ This is a simple command-line calculator program implemented in JavaScript. It a
 3. Run the one of following command to start the calculator:
 
 
-##### run calculator:
+##### Run calculator:
 
 ```shell
 npm run calc
