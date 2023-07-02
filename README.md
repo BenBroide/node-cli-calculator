@@ -18,14 +18,13 @@ node node-cli-calculator.js
 node node-cli-calculator.js --show-interactive-logs
 ```
 
-#### Run testing:
+##### Run testing:
 
-testing: 
 ```shell
 node test.js
 ```
 
-#### Clear logs
+##### Clear logs
 
 ```shell
 sh clear-logs.sh
