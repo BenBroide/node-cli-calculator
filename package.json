@@ -2,8 +2,8 @@
   "scripts": {
     "test": "jest",
     "calc": "node src/index.js",
-    "calc:debug": "node index.js --show-interactive-logs",
-    "clear-logs": "node clear-logs.js"
+    "calc:debug": "node src/index.js --show-interactive-logs",
+    "clear-logs": "node utils/clear-logs.js"
   },
   "devDependencies": {
     "@types/node": "^20.3.3"
