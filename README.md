@@ -6,12 +6,13 @@ This is a simple command-line calculator program implemented in JavaScript. It a
 
 1. Make sure you have Node.js installed on your system.
 2. Open a terminal or command prompt and navigate to the project directory.
-3. Run the one of following command to start the calculator:
+3. Run the following command to install the project dependencies:
 
 ```shell
 npm install
 ```
 
+After the installation is complete, you can run the calculator using one of the following commands:
 
 ##### Run calculator:
 
