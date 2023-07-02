@@ -11,11 +11,22 @@ This is a simple command-line calculator program implemented in JavaScript. It a
 ```shell
 node node-cli-calculator.js
 ```
+
+##### To enable interactive logs:
+
 ```shell
 node node-cli-calculator.js --show-interactive-logs
 ```
 
+#### Run testing:
+
 testing: 
+```shell
+node test.js
+```
+
+#### Clear logs
+
 ```shell
 sh clear-logs.sh
 ```
