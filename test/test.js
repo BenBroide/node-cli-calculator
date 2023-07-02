@@ -2,7 +2,7 @@ const { spawn } = require('child_process');
 
 function runCode(inputs) {
     return new Promise((resolve, reject) => {
-        const child = spawn('node', ['node-cli-calculator.js', '--testing']);
+        const child = spawn('node', ['src/index.js', '--testing']);
 
         let output = '';
         child.stdout.on('data', (data) => {

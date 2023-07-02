@@ -1,8 +1,8 @@
 {
   "scripts": {
     "test": "jest",
-    "calc": "node node-cli-calculator.js",
-    "calc:debug": "node node-cli-calculator.js --show-interactive-logs",
+    "calc": "node src/index.js",
+    "calc:debug": "node index.js --show-interactive-logs",
     "clear-logs": "node clear-logs.js"
   },
   "devDependencies": {

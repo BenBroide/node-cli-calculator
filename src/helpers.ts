@@ -1,7 +1,6 @@
 import * as fs from 'fs';
+import * as path from 'path';
 
-let logFileName: string | null = null;
-let logFileInitialized = false;
 
 interface LogEntry {
     input: string;
@@ -31,10 +30,9 @@ function cleanExpressionParts(expressionParts: string[]): string[] {
 }
 
 function saveLogToFile(log: LogEntry[], timestamp: string): void {
-    if (!logFileInitialized) {
-       logFileName = `calculator-${timestamp}.log`;
-        logFileInitialized = true;
-    }
+    const logFolder = 'logs';
+    const logFileName = `calculator-${timestamp}.log`;
+    const logFilePath = path.join(logFolder, logFileName);
 
     let logContent = '';
 
@@ -42,9 +40,15 @@ function saveLogToFile(log: LogEntry[], timestamp: string): void {
         logContent += `Input: ${entry.input}, Output: ${entry.output}, Reason: ${entry.reason}\n`;
     }
 
-    fs.appendFile(logFileName || '', logContent, (err) => {
+    fs.mkdir(logFolder, { recursive: true }, (err) => {
         if (err) {
-            console.error('Error writing log file:', err);
+            console.error('Error creating log folder:', err);
+        } else {
+            fs.appendFile(logFilePath, logContent, (err) => {
+                if (err) {
+                    console.error('Error writing log file:', err);
+                }
+            });
         }
     });
 }

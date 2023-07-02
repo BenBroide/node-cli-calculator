@@ -2,8 +2,7 @@
 exports.__esModule = true;
 exports.getTimestamp = exports.getShowInteractiveLogsFlag = exports.consoleLog = exports.saveLogToFile = exports.cleanExpressionParts = exports.printLogEntry = exports.addToLog = void 0;
 var fs = require("fs");
-var logFileName = null;
-var logFileInitialized = false;
+var path = require("path");
 function printLogEntry(logEntry) {
     if (!getShowInteractiveLogsFlag()) {
         return;
@@ -24,18 +23,24 @@ function cleanExpressionParts(expressionParts) {
 }
 exports.cleanExpressionParts = cleanExpressionParts;
 function saveLogToFile(log, timestamp) {
-    if (!logFileInitialized) {
-        logFileName = "calculator-".concat(timestamp, ".log");
-        logFileInitialized = true;
-    }
+    var logFolder = 'logs';
+    var logFileName = "calculator-".concat(timestamp, ".log");
+    var logFilePath = path.join(logFolder, logFileName);
     var logContent = '';
     for (var _i = 0, log_1 = log; _i < log_1.length; _i++) {
         var entry = log_1[_i];
         logContent += "Input: ".concat(entry.input, ", Output: ").concat(entry.output, ", Reason: ").concat(entry.reason, "\n");
     }
-    fs.appendFile(logFileName || '', logContent, function (err) {
+    fs.mkdir(logFolder, { recursive: true }, function (err) {
         if (err) {
-            console.error('Error writing log file:', err);
+            console.error('Error creating log folder:', err);
+        }
+        else {
+            fs.appendFile(logFilePath, logContent, function (err) {
+                if (err) {
+                    console.error('Error writing log file:', err);
+                }
+            });
         }
     });
 }
