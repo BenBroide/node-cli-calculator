@@ -4,8 +4,11 @@
     "calc": "node node-cli-calculator.js",
     "calc:debug": "node node-cli-calculator.js --show-interactive-logs",
     "clear-logs": "node clear-logs.js"
-},
+  },
   "devDependencies": {
     "@types/node": "^20.3.3"
+  },
+  "dependencies": {
+    "jest": "^29.5.0"
   }
 }
