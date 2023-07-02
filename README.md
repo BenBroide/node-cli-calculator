@@ -8,6 +8,10 @@ This is a simple command-line calculator program implemented in JavaScript. It a
 2. Open a terminal or command prompt and navigate to the project directory.
 3. Run the one of following command to start the calculator:
 
+```shell
+npm install
+```
+
 
 ##### Run calculator:
 
