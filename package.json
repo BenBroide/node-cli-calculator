@@ -3,7 +3,8 @@
     "test": "jest",
     "calc": "node src/index.js",
     "calc:debug": "node src/index.js --show-interactive-logs",
-    "clear-logs": "node utils/clear-logs.js"
+    "clear-logs": "node utils/clear-logs.js",
+    "build": "tsc src/index.ts src/helpers.ts"
   },
   "devDependencies": {
     "@types/node": "^20.3.3"

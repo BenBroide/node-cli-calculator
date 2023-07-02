@@ -4,7 +4,7 @@ import * as path from 'path';
 
 interface LogEntry {
     input: string;
-    output: string;
+    output: number| string;
     reason: string;
 }
 
@@ -60,7 +60,7 @@ function consoleLog(string: string): void {
     console.log(string);
 }
 
-function addToLog(input: string, output: string, reason: string, log: LogEntry[]): void {
+function addToLog(input: string, output: number|string, reason: string, log: LogEntry[]): void {
     const logEntry: LogEntry = {
         input: input,
         output: output,

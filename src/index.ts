@@ -30,7 +30,7 @@ rl.on('close', () => {
 });
 
 function processExpressionParts(expressionParts: Array<string>, input: string): number | null {
-  let logEntry: { input: string, output: number, reason: string } = { input: "", output: 0, reason: ""};
+  let logEntry: { input: string, output: number | string, reason: string } = { input: "", output: 0, reason: ""};
 
   for (const part of expressionParts) {
     switch (true) {
