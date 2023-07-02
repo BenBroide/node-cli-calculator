@@ -8,24 +8,27 @@ This is a simple command-line calculator program implemented in JavaScript. It a
 2. Open a terminal or command prompt and navigate to the project directory.
 3. Run the one of following command to start the calculator:
 
+
+##### run calculator:
+
 ```shell
-node node-cli-calculator.js
+npm run calc
 ```
 
 ##### To enable interactive logs:
 
 ```shell
-node node-cli-calculator.js --show-interactive-logs
+npm run calc:debug
 ```
 
 ##### Run testing:
 
 ```shell
-node test.js
+npm test
 ```
 
 ##### Clear logs
 
 ```shell
-sh clear-logs.sh
+npm run clear-logs
 ```
