@@ -1,5 +1,5 @@
 const { spawn } = require('child_process');
-import { describe,beforeAll } from 'jest';
+
 function runCode(inputs) {
     return new Promise((resolve, reject) => {
         const child = spawn('node', ['node-cli-calculator.js', '--testing']);
