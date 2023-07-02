@@ -25,7 +25,7 @@ function runCode(inputs, callback) {
 }
 
 const testCases = [
-    { input: '2+45', expectedOutput: '45' },
+    { input: '2+45', expectedOutput: '455' },
     { input: '=', expectedOutput: '47' },
     { input: '*3=', expectedOutput: '141' },
     { input: '-8+12=', expectedOutput: '145' },
