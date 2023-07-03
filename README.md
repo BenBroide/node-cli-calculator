@@ -12,12 +12,6 @@ This is a simple command-line calculator program implemented in JavaScript. It a
 npm install
 ```
 
-If src/*.ts are modifed, run the following command to build the .js files.
-
-```shell
-npm run build
-```
-
 After the installation is complete, you can run the calculator using one of the following commands:
 
 ##### Run calculator:
@@ -42,4 +36,12 @@ npm test
 
 ```shell
 npm run clear-logs
+```
+
+## Development
+
+If src/*.ts have been modifed, run the following command to build the .js files.
+
+```shell
+npm run build
 ```
